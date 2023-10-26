@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  app:
+    image: gustavenrique/symfony-app
+    container_name: symfony-app
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_ID: '${WWWUSER:-1000}'
+        GROUP_ID: '${WWWGROUP:-1000}'
+        USER: dev
+    ports:
+      - 8000:8000
+    volumes:
+      - ./:/var/www
+#   ###> doctrine/doctrine-bundle ###
+#   database:
+#     image: postgres:${POSTGRES_VERSION:-15}-alpine
+#     environment:
+#       POSTGRES_DB: ${POSTGRES_DB:-app}
+#       # You should definitely change the password in production
+#       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+#       POSTGRES_USER: ${POSTGRES_USER:-app}
+#     volumes:
+#       - database_data:/var/lib/postgresql/data:rw
+#       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+#       # - ./docker/db/data:/var/lib/postgresql/data:rw
+#     ports:
+#       - '5432'
+#   ###< doctrine/doctrine-bundle ###
+#   ###> symfony/mailer ###
+#   mailer:
+#     image: schickling/mailcatcher
+#     ports: ['1025', '1080']
+#   ###< symfony/mailer ###
+
+# volumes:
+#   ###> doctrine/doctrine-bundle ###
+#   database_data:
+# ###< doctrine/doctrine-bundle ###
