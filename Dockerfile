@@ -24,14 +24,8 @@ COPY ./ ./
 RUN composer install
 
 # Changing user
-ARG USER_ID
-ARG GROUP_ID
-ARG USER
-
-RUN groupadd --force -g $GROUP_ID $USER
-RUN useradd -ms /bin/bash --no-user-group -g $GROUP_ID -u 1337 $USER
-RUN usermod -u $USER_ID $USER
-
+RUN groupadd --force -g 1000 dev
+RUN useradd -ms /bin/bash --no-user-group -g 1000 -u 1000 dev
 USER $USER
 
 CMD ["symfony", "server:start"]

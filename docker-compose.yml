@@ -8,10 +8,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        USER_ID: '${WWWUSER:-1000}'
-        GROUP_ID: '${WWWGROUP:-1000}'
-        USER: dev
     ports:
       - 8000:8000
     volumes:
