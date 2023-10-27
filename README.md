@@ -3,6 +3,12 @@
 ## Commands
 
 ```bash
+# list symfony commands
+symfony
+
+# list symfony console commands
+symfone console
+
 # create webapp project
 symfony new <dir> --version="6.3.*" --webapp
 
@@ -10,7 +16,13 @@ symfony new <dir> --version="6.3.*" --webapp
 symfony server:start
 
 # create controller + view
-./bin/console make:controller ExampleController
+symfony console make:controller ExampleController
+
+# create database
+symfony console doctrine:database:create
+
+# create/edit entity
+symfony console make:entity <entity_name>
 ```
 
 ## Docker
