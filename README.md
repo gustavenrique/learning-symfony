@@ -8,6 +8,9 @@ symfony new <dir> --version="6.3.*" --webapp
 
 # run app
 symfony server:start
+
+# create controller + view
+./bin/console make:controller ExampleController
 ```
 
 ## Docker
