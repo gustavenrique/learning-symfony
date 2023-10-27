@@ -18,16 +18,14 @@
 </style>
 
 <div class="example-wrapper">
-    {% if movies %}
-    Movies
+    {% if title and description %}
+    <h1>{{ title }}</h1>
+
+    <p>{{ description }}</p>
+    {% else %}
+    Movie not found
     {% endif %}
 
-    <ul>
-        {% for movie in movies %}
-        <li>{{ movie.title }}</li>
-        {% else %}
-        <li>No movie found</li>
-        {% endfor %}
-    </ul>
+    Author: {{ author }}
 </div>
 {% endblock %}
