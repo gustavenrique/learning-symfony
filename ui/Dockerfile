@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y \
     vim \
     libicu-dev
 
+RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash - \
+    && apt install -y nodejs
+
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install pdo pdo_mysql intl
 
@@ -21,14 +24,17 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | b
 # Installing app dependencies
 WORKDIR /var/www
 COPY ./ ./
+
 RUN composer install
+RUN yarn
 
-# Changing set of permissions (for development)
-RUN chmod -R 777 ./src
-
-# Changing user
+# Creating dev user
 RUN groupadd --force -g 1000 dev
 RUN useradd -ms /bin/bash --no-user-group -g 1000 -u 1000 dev
+
+# Changing set of permissions and ownership (for development only!)
+RUN chmod -R 777 ./src && chown -hR dev:dev ./src
+
 USER $USER
 
 CMD ["symfony", "server:start"]

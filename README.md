@@ -1,9 +1,9 @@
 # Symfony
 
 ## Commands
+### Basics
 
 ```bash
-#### BASICS
 # list symfony commands
 symfony
 
@@ -18,8 +18,10 @@ symfony server:start
 
 # create controller + view
 symfony console make:controller ExampleController
+```
 
-#### DATABASE
+### Database
+```bash
 # create database
 symfony console doctrine:database:create
 
@@ -31,13 +33,28 @@ symfony console make:migration
 
 # execute migrations
 symfony console doctrine:migrations:migrate
+```
 
-#### FIXTURES
+### Data Fixtures
+```bash
 # create fixture class
 symfony console make:fixtures ExampleFixture
 
 # execute fixtures
 yes | symfony console doctrine:fixture:load
+```
+
+### Webpack
+```bash
+##### install webpack-encore
+# setup typescript
+npx tsc --init && yarn add --dev typescript tsc-loader
+
+# setup sass
+yarn add --D sass-loader sass
+
+# install webpack-encore
+composer require symfony/webpack-encore-bundle
 ```
 
 ## Docker

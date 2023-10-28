@@ -22,7 +22,7 @@ class MovieController extends AbstractController
     {
         $movies = $this->movieRepository->findBy([], ['id' => 'desc']);
 
-        dd($movies);
+        // dd($movies);
 
         return $this->render('movie/index.twig', ['movies' => $movies]);
     }
