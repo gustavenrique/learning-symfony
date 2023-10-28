@@ -1,4 +1,4 @@
-<?php
+<? declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -21,7 +21,7 @@ class MovieRepository extends ServiceEntityRepository
         parent::__construct($registry, Movie::class);
     }
 
-//    /**
+    //    /**
 //     * @return Movie[] Returns an array of Movie objects
 //     */
 //    public function findByExampleField($value): array
@@ -36,7 +36,7 @@ class MovieRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Movie
+    //    public function findOneBySomeField($value): ?Movie
 //    {
 //        return $this->createQueryBuilder('m')
 //            ->andWhere('m.exampleField = :val')

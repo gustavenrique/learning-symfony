@@ -20,14 +20,13 @@
 <div class="example-wrapper">
     {% if movies %}
     Movies
-    {% endif %}
-
     <ul>
         {% for movie in movies %}
         <li>{{ movie.title }}</li>
-        {% else %}
-        <li>No movie found</li>
         {% endfor %}
     </ul>
+    {% else %}
+    No movie found
+    {% endif %}
 </div>
 {% endblock %}

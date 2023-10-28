@@ -1,6 +1,6 @@
 {% extends 'base.twig' %}
 
-{% block title %}{{ title ?? 'Movie' }}{% endblock %}
+{% block title %}{{ movie.title ?? 'Movie' }}{% endblock %}
 
 {% block body %}
 <style>
@@ -18,10 +18,10 @@
 </style>
 
 <div class="example-wrapper">
-    {% if title and description %}
-    <h1>{{ title }}</h1>
+    {% if movie.title and movie.description %}
+    <h1>{{ movie.title }}</h1>
 
-    <p>{{ description }}</p>
+    <p>{{ movie.description }}</p>
     {% else %}
     Movie not found
     {% endif %}

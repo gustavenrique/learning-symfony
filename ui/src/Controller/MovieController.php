@@ -1,8 +1,9 @@
-<?php
+<? declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Movie;
+use App\Repository\MovieRepository;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,14 +11,18 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/movie')]
 class MovieController extends AbstractController
 {
+    public function __construct(
+        private readonly MovieRepository $movieRepository,
+        private readonly LoggerInterface $logger
+    ) {
+    }
+
     #[Route('/', name: 'Movies')]
     public function index(): Response
     {
-        $movies = [
-            ['title' => 'Avengers: End Game'],
-            ['title' => 'Sonic'],
-            ['title' => 'Mario Bros.'],
-        ];
+        $movies = $this->movieRepository->findBy([], ['id' => 'desc']);
+
+        dd($movies);
 
         return $this->render('movie/index.twig', ['movies' => $movies]);
     }
@@ -25,12 +30,10 @@ class MovieController extends AbstractController
     #[Route('/{id}', name: 'Movie')]
     public function movie(int $id): Response
     {
-        $movie = [
-            'id' => $id,
-            'title' => 'Avengers',
-            'description' => 'An awesome movie!'
-        ];
+        $movie = $this->movieRepository->find($id);
 
-        return $this->render('movie/movie.twig', $movie);
+        // dd($movie);
+
+        return $this->render('movie/movie.twig', ['movie' => $movie]);
     }
 }

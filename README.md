@@ -26,6 +26,12 @@ symfony console doctrine:database:create
 # create/edit entity
 symfony console make:entity <entity_name>
 
+# create migrations
+symfony console make:migration
+
+# execute migrations
+symfony console doctrine:migrations:migrate
+
 #### FIXTURES
 # create fixture class
 symfony console make:fixtures ExampleFixture
