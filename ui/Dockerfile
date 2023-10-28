@@ -23,6 +23,9 @@ WORKDIR /var/www
 COPY ./ ./
 RUN composer install
 
+# Changing set of permissions (for development)
+RUN chmod -R 777 ./src
+
 # Changing user
 RUN groupadd --force -g 1000 dev
 RUN useradd -ms /bin/bash --no-user-group -g 1000 -u 1000 dev

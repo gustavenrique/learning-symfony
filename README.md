@@ -3,6 +3,7 @@
 ## Commands
 
 ```bash
+#### BASICS
 # list symfony commands
 symfony
 
@@ -18,11 +19,19 @@ symfony server:start
 # create controller + view
 symfony console make:controller ExampleController
 
+#### DATABASE
 # create database
 symfony console doctrine:database:create
 
 # create/edit entity
 symfony console make:entity <entity_name>
+
+#### FIXTURES
+# create fixture class
+symfony console make:fixtures ExampleFixture
+
+# execute fixtures
+yes | symfony console doctrine:fixture:load
 ```
 
 ## Docker
