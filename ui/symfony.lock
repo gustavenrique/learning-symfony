@@ -52,6 +52,9 @@
             "tests/bootstrap.php"
         ]
     },
+    "rompetomp/inertia-bundle": {
+        "version": "v2.4.3"
+    },
     "symfony/console": {
         "version": "6.3",
         "recipe": {
