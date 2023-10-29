@@ -6,13 +6,14 @@
 
         <Button 
             placeholder="Example"
-            :callback="example"
+            @click="example"
         />
     </div>
 </template>
 
 <script lang="ts">
-import Button from '../components/Button.vue';
+// import Head from '@inertiajs/vue3';
+import Button from '../../components/Button.vue';
 
 export default {
     components: { Button },

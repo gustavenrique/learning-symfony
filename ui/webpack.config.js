@@ -12,10 +12,10 @@ Encore
     .setPublicPath('/build')
 
     .addEntry('app', './assets/ts/app.ts')
-    .addEntry('example', './assets/ts/example.ts')
+    .addEntry('welcome', './assets/ts/pages/Welcome/welcome.ts')
 
     .splitEntryChunks()
-    .disableSingleRuntimeChunk()
+    .enableSingleRuntimeChunk()
     /*
      * FEATURE CONFIG
      *
@@ -38,11 +38,9 @@ Encore
     })
     .enableSassLoader()
     .enableTypeScriptLoader()
-    .enableVueLoader()
-// .configureDefinePlugin(options => {
-//     options.__VUE_OPTIONS_API__ = true;
-//     options.__VUE_PROD_DEVTOOLS__ = false;
-// })
+    .enableVueLoader(() => { }, {
+        runtimeCompilerBuild: false
+    })
 
 const config = Encore.getWebpackConfig();
 

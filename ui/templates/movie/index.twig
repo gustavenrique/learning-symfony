@@ -1,17 +1,10 @@
 {% extends 'base.twig' %}
 
-{% block title %}
-{{ title ?? 'Movie' }}
-{% endblock %}
-
-{# !!!!!!!!!!!!!!!!!!!!!!!! NEVER FORGET TO ADD THE {{ parent() }} #}
-{# {% block javascripts %}
-{{ parent() }}
-{% endblock %} #}
+{% block title %}Movies Catalog{% endblock %}
 
 {% block body %}
-<div class="example-wrapper">
-    {# {% if movies %}
+<div>
+    {% if movies %}
     Movies
     <ul>
         {% for movie in movies %}
@@ -20,6 +13,6 @@
     </ul>
     {% else %}
     No movie found
-    {% endif %} #}
+    {% endif %}
 </div>
 {% endblock %}

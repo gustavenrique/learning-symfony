@@ -1,8 +1,8 @@
 <template>
-    <button class='btn' @click='callback'>{{ placeholder }}</button>
+    <button class='btn'>{{ placeholder }}</button>
 </template>
 
-<script>
+<script lang='ts'>
 export default {
     props: { 
         placeholder: { type: String, required: true }, 
