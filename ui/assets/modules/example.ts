@@ -1,1 +1,1 @@
-alert('it\'s just a test bro');
+alert('Hello from example.ts!');

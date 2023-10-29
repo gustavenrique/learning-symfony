@@ -1,11 +1,13 @@
 {% extends 'base.twig' %}
 
-{% block title %}{{ title ?? 'Movie' }}{% endblock %}
-
-{% block javascripts %}
-{{ parent() }}
-{{ encore_entry_script_tags('example') }}
+{% block title %}
+{{ title ?? 'Movie' }}
 {% endblock %}
+
+{# !!!!!!!!!!!!!!!!!!!!!!!! NEVER FORGET TO ADD THE {{ parent() }} #}
+{# {% block javascripts %}
+{{ parent() }}
+{% endblock %} #}
 
 {% block body %}
 <style>

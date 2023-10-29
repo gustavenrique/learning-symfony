@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash - \
     && apt install -y nodejs
+RUN npm i --global yarn
 
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install pdo pdo_mysql intl
@@ -32,9 +33,7 @@ RUN yarn
 RUN groupadd --force -g 1000 dev
 RUN useradd -ms /bin/bash --no-user-group -g 1000 -u 1000 dev
 
-# Changing set of permissions and ownership (for development only!)
-RUN chmod -R 777 ./src && chown -hR dev:dev ./src
-
 USER $USER
 
-CMD ["symfony", "server:start"]
+# Starting the app
+CMD ["bash", "./bootstrap.sh"]

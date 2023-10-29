@@ -1,12 +1,6 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
-
-// any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.sass';
+
+console.log('HELLO FROM app.ts!');
 
 class User {
     constructor(
@@ -22,6 +16,3 @@ console.log(new User(
     'John Doe', 
     new Date('10-09-1970')
 ));
-
-alert('testing')
-console.log('testing')
