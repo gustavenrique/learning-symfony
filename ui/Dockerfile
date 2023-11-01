@@ -7,11 +7,10 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     vim \
-    libicu-dev
+    libicu-dev \
+    npm
 
-RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash - \
-    && apt install -y nodejs
-RUN npm i --global yarn
+RUN npm i -g n && n lts && npm i -g npm@latest
 
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install pdo pdo_mysql intl
@@ -27,7 +26,7 @@ WORKDIR /var/www
 COPY ./ ./
 
 RUN composer install
-RUN yarn
+RUN npm i -g yarn && yarn
 
 # Creating dev user
 RUN groupadd --force -g 1000 dev
