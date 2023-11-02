@@ -21,15 +21,19 @@ RUN curl -sS https://getcomposer.org/installer \
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash \
     && apt install symfony-cli
 
-# Copying files
-WORKDIR /var/www
-COPY ./ ./
-
 # Creating dev user
 RUN groupadd --force -g 1000 dev
 RUN useradd -ms /bin/bash --no-user-group -g 1000 -u 1000 dev
 
 USER $USER
+
+# Installing dependencies
+WORKDIR /var/www
+COPY ./ ./
+
+RUN rm -rf ./vendor ./node_modules
+
+RUN composer install & (npm i -g yarn && yarn)
 
 # Starting the app
 CMD ["bash", "./bootstrap.sh"]

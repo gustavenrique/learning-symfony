@@ -1,39 +1,7 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
-import Head from '@inertiajs/vue3';
-import Button from '../components/Button.vue';
-
-interface Movie {
-    id: number;
-    title: string;
-    releaseYear: number;
-    description: string;
-    imageUrl: string;
-    actors: Array<any>
-}
-
-export default defineComponent({
-    components: { Button },
-
-    props: {
-        movies: Array<Movie>
-    },
-
-    data: () => ({
-
-    }),
-
-    methods: {
-        example() {
-            alert('You clicked the example button!');
-        }
-    }
-})
-</script>
-
 <template>
     <div>
-        <Head title="VITS" />
+
+        <Head title="Welcome!" />
 
         <h1>
             Welcome to this VITS project!
@@ -54,9 +22,26 @@ export default defineComponent({
             </ul>
         </div>
 
-        <Button 
-            placeholder="Example"
-            @click="example"
-        />
+        <Button placeholder="Example" @click="example" />
     </div>
 </template>
+
+<script lang="ts">
+import Button from '../components/Button.vue';
+import { defineComponent } from 'vue';
+import { Head } from '@inertiajs/vue3';
+
+export default defineComponent({
+    components: { Button, Head },
+
+    data: () => ({
+
+    }),
+
+    methods: {
+        example() {
+            alert('You clicked the example button!');
+        }
+    }
+})
+</script>

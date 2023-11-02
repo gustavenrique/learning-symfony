@@ -2,19 +2,19 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    props: { 
-        placeholder: { type: String, required: true }, 
+    props: {
+        placeholder: { type: String, required: true },
         callback: { type: Function, require: true }
     },
 
     data: () => ({
-        
+
     })
 })
 </script>
 
 <template>
-<button class='btn'>{{ placeholder }}</button>
+    <button class='btn'>{{ placeholder }}</button>
 </template>
 
 <!-- <style lang="sass" scoped>

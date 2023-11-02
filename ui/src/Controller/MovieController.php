@@ -19,24 +19,19 @@ class MovieController extends AbstractController
     ) {
     }
 
-    #[Route('/', name: 'Movies')]
+    #[Route('/', name: 'movie.index')]
     public function index(): Response
     {
         $movies = $this->movieRepository->findBy([], ['id' => 'desc']);
 
-        // dd($movies);
-
-        // return $this->render('movie/index.twig', ['movies' => $movies]);
-        return $this->inertia->render('Welcome', ['movies' => $movies]);
+        return $this->inertia->render('Movie/Index', ['movies' => $movies]);
     }
 
-    #[Route('/{id}', name: 'Movie')]
-    public function movie(int $id): Response
+    #[Route('/{id}', name: 'movie.show')]
+    public function info(int $id): Response
     {
         $movie = $this->movieRepository->find($id);
 
-        // dd($movie);
-
-        return $this->render('movie/movie.twig', ['movie' => $movie]);
+        return $this->inertia->render('Movie/Show', ['movie' => $movie]);
     }
 }
