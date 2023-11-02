@@ -10,12 +10,10 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
-
-    .addEntry('app', './assets/ts/app.ts')
-    .addEntry('welcome', './assets/ts/pages/Welcome/welcome.ts')
+    .addEntry('main', './views/main.ts')
 
     .splitEntryChunks()
-    .enableSingleRuntimeChunk()
+    .disableSingleRuntimeChunk()
     /*
      * FEATURE CONFIG
      *
@@ -24,14 +22,11 @@ Encore
      * https://symfony.com/doc/current/frontend.html#adding-more-features
      */
     .cleanupOutputBeforeBuild()
-    .enableBuildNotifications()
+    // .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
     .enableIntegrityHashes(Encore.isProduction())
 
-    // .configureBabel((config) => {
-    //     config.plugins.push('@babel/a-babel-plugin');
-    // })
     .configureBabelPresetEnv(config => {
         config.useBuiltIns = 'usage';
         config.corejs = '3.23';
@@ -39,7 +34,8 @@ Encore
     .enableSassLoader()
     .enableTypeScriptLoader()
     .enableVueLoader(() => { }, {
-        runtimeCompilerBuild: false
+        runtimeCompilerBuild: false,
+        version: 3
     })
 
 const config = Encore.getWebpackConfig();

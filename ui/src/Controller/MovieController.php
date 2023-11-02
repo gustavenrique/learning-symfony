@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\MovieRepository;
 use Psr\Log\LoggerInterface;
+use Rompetomp\InertiaBundle\Service\InertiaInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +14,8 @@ class MovieController extends AbstractController
 {
     public function __construct(
         private readonly MovieRepository $movieRepository,
-        private readonly LoggerInterface $logger
+        private readonly LoggerInterface $logger,
+        private readonly InertiaInterface $inertia
     ) {
     }
 
@@ -24,7 +26,8 @@ class MovieController extends AbstractController
 
         // dd($movies);
 
-        return $this->render('movie/index.twig', ['movies' => $movies]);
+        // return $this->render('movie/index.twig', ['movies' => $movies]);
+        return $this->inertia->render('Welcome', ['movies' => $movies]);
     }
 
     #[Route('/{id}', name: 'Movie')]

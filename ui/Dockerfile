@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     npm
 
-RUN npm i -g n && n lts && npm i -g npm@latest
+RUN npm i -g n && n 20 && npm i -g npm@latest
 
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install pdo pdo_mysql intl
@@ -21,12 +21,9 @@ RUN curl -sS https://getcomposer.org/installer \
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash \
     && apt install symfony-cli
 
-# Installing app dependencies
+# Copying files
 WORKDIR /var/www
 COPY ./ ./
-
-RUN composer install
-RUN npm i -g yarn && yarn
 
 # Creating dev user
 RUN groupadd --force -g 1000 dev
