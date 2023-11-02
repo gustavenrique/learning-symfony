@@ -12,6 +12,8 @@ services:
       - 8000:8000
     volumes:
       - ./ui:/var/www
+      - /var/www/vendor
+      - /var/www/node_modules
 
   db:
     image: mysql:8.1

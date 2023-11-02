@@ -70,9 +70,14 @@ docker exec -u root -it symfony-app bash
 ## Vue + Inertia
 ```bash
 # setup
-yarn add @inertiajs/inertia @inertiajs/vue3 vue vue-loader@17.0.0
-
-composer require twig encore symfony/serializer-pack
+yarn add @inertiajs/vue3 vue vue-loader@17.0.0
 
 composer require rompetomp/inertia-bundle # specific for symfony
+
+# composer require twig encore symfony/serializer-pack
+```
+
+## TailwindCSS
+```bash
+yarn add -D tailwindcss postcss-loader purgecss-webpack-plugin glob-all path
 ```

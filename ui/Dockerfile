@@ -29,9 +29,9 @@ USER $USER
 
 # Installing dependencies
 WORKDIR /var/www
-COPY ./ ./
+COPY ./*.lock ./*.json ./*config* ./
 
-RUN rm -rf ./vendor ./node_modules
+RUN rm -rf vendor node_modules
 
 RUN composer install & (npm i -g yarn && yarn)
 
