@@ -48,7 +48,7 @@ yes | symfony console doctrine:fixture:load
 ```bash
 ##### install webpack-encore
 # setup typescript
-npx tsc --init && yarn add --dev typescript tsc-loader
+npx tsc --init && yarn add --dev typescript ts-loader
 
 # setup sass
 yarn add --D sass-loader sass
