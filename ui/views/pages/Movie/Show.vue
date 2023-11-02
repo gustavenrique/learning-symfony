@@ -1,24 +1,23 @@
 <template>
-    <div>
+    <Layout :pageTitle="movie?.title ?? ''">
 
-        <Head>
-            <title>{{ movie?.title }}</title>
-        </Head>
-    </div>
+    </Layout>
 </template>
     
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { Head } from '@inertiajs/vue3';
-import { Movie } from '../../dtos/all';
+import { PropType, defineComponent } from 'vue';
+import Layout from '@/components/Layout.vue';
+import { Movie } from '@/assets/ts/dtos/all';
 
 export default defineComponent({
+    components: { Layout },
+
     props: {
-        movie: Movie
+        movie: Object as PropType<Movie>
     },
 
     created() {
-        console.log('received the movies', this.movie)
+        console.dir(this.movie)
     }
 })
 </script>

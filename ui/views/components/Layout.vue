@@ -1,15 +1,6 @@
-<script lang='ts'>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-    data: () => ({
-
-    })
-});
-</script>
-
 <template>
     <div id="layout">
+        <Head :title="pageTitle" />
         <nav>
             <div class="logo">Vits</div>
             <div class="burger-btn"></div>
@@ -24,6 +15,19 @@ export default defineComponent({
         </footer>
     </div>
 </template>
+
+<script lang='ts'>
+import { defineComponent } from 'vue';
+import { Head } from '@inertiajs/vue3';
+
+export default defineComponent({
+    components: { Head },
+
+    props: {
+        pageTitle: { required: true, type: String }
+    }
+});
+</script>
 
 <style lang="scss">
 @import '../assets/scss/variables';
@@ -53,7 +57,7 @@ html {
     flex-direction: column;
 
     nav {
-        flex: .5;
+        flex: .25;
         min-height: 50px !important;
         display: flex;
         align-items: center;
@@ -73,7 +77,10 @@ html {
     }
 
     footer {
-        flex: .5;
+        flex: .25;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding: 10px 5px;
         box-shadow: 10px 10px 10px rgba(0, 0, 0, .75);
         text-align: center;

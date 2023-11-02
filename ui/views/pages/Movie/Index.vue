@@ -1,21 +1,19 @@
 <template>
-    <div>
-
-        <Head title="Movies" />
-
+    <Layout page-title="Movies">
         <ul>
             <li v-for="movie in movies" :key="movie.id">{{ movie.title }}</li>
         </ul>
-    </div>
+    </Layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { Movie } from '../../dtos/all';
 import { Head } from '@inertiajs/vue3';
+import Layout from '@/components/Layout.vue';
+import { Movie } from '@/assets/ts/dtos/all';
 
 export default defineComponent({
-    components: { Head },
+    components: { Head, Layout },
 
     props: {
         movies: Array<Movie>
