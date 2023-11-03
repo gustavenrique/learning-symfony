@@ -52,7 +52,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../assets/scss/variables';
+@import '../assets/scss/app';
 
 .welcome {
     .stack {

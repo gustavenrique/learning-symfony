@@ -94,7 +94,7 @@ composer require rompetomp/inertia-bundle # specific for symfony
 ## TailwindCSS
 ```bash
 # install dependencies
-yarn add -D tailwindcss postcss-loader purgecss-webpack-plugin glob-all path
+yarn add -D tailwindcss postcss-loader glob-all
 
 # create tailwind and postcss config files
 npx tailwindcss init -p

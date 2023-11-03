@@ -35,6 +35,9 @@ Encore
         runtimeCompilerBuild: false,
         version: 3
     })
+    .enablePostCssLoader(config => {
+        config.postcssOptions = { config: './postcss.config.ts' };
+    })
 
     .addAliases({
         '@': path.resolve(__dirname, 'resources')
