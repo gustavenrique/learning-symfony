@@ -1,7 +1,9 @@
-<script lang='ts'>
-import { defineComponent } from 'vue';
+<template>
+    <button class='btn'>{{ placeholder }}</button>
+</template>
 
-export default defineComponent({
+<script lang='ts'>
+export default {
     props: {
         placeholder: { type: String, required: true }
     },
@@ -9,12 +11,8 @@ export default defineComponent({
     data: () => ({
 
     })
-})
+}
 </script>
-
-<template>
-    <button class='btn'>{{ placeholder }}</button>
-</template>
 
 <style lang="scss" scoped>
 @import '../assets/scss/variables';

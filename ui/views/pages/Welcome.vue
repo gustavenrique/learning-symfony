@@ -1,7 +1,5 @@
 <template>
-    <Layout>
-        <Head title="Welcome | VITS" />
-
+    <Layout pageTitle="Welcome!">
         <div class="welcome">
             <h1 style="text-align: center">
                 Welcome to VITS!
@@ -33,12 +31,11 @@
 </template>
 
 <script lang="ts">
-import Button from '../components/Button.vue';
-import Layout from '../components/Layout.vue';
-import { defineComponent } from 'vue';
+import Button from '@/components/Button.vue';
+import Layout from '@/components/Layout.vue';
 import { Head } from '@inertiajs/vue3';
 
-export default defineComponent({
+export default {
     components: { Button, Head, Layout },
 
     data: () => ({
@@ -50,7 +47,7 @@ export default defineComponent({
             alert('You clicked the example button!');
         }
     }
-})
+}
 </script>
 
 <style lang="scss">

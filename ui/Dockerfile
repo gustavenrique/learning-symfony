@@ -1,7 +1,7 @@
 FROM php:8.2-fpm-bookworm AS buider
 
 # Installing packages
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     git \
     curl \
     zip \
@@ -21,12 +21,6 @@ RUN curl -sS https://getcomposer.org/installer \
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash \
     && apt install symfony-cli
 
-# Creating dev user
-RUN groupadd --force -g 1000 dev
-RUN useradd -ms /bin/bash --no-user-group -g 1000 -u 1000 dev
-
-USER $USER
-
 # Installing dependencies
 WORKDIR /var/www
 COPY ./*.lock ./*.json ./*config* ./
@@ -34,6 +28,12 @@ COPY ./*.lock ./*.json ./*config* ./
 RUN rm -rf vendor node_modules
 
 RUN composer install & (npm i -g yarn && yarn)
+
+# Creating dev user
+# RUN groupadd --force -g 1000 dev
+# RUN useradd -ms /bin/bash --no-user-group -g 1000 -u 1000 dev
+
+# USER dev
 
 # Starting the app
 CMD ["bash", "./bootstrap.sh"]

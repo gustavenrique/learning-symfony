@@ -1,6 +1,6 @@
 const
     Encore = require('@symfony/webpack-encore'),
-    // path = require('path'),
+    path = require('path'),
     webpack = require('webpack');
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -34,6 +34,10 @@ Encore
     .enableVueLoader(() => { }, {
         runtimeCompilerBuild: false,
         version: 3
+    })
+
+    .addAliases({
+        '@': path.resolve(__dirname, 'views')
     })
 
     .addPlugin(new webpack.DefinePlugin({

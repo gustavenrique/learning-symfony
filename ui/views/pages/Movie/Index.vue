@@ -7,16 +7,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
 import { Head } from '@inertiajs/vue3';
-import Layout from '@/components/Layout.vue';
 import { Movie } from '@/assets/ts/dtos/all';
+import Layout from '@/components/Layout.vue';
 
-export default defineComponent({
+export default {
     components: { Head, Layout },
 
     props: {
         movies: Array<Movie>
     },
-})
+}
 </script>

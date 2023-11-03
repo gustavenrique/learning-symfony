@@ -1,15 +1,14 @@
 <template>
     <Layout :pageTitle="movie?.title ?? ''">
-
     </Layout>
 </template>
     
 <script lang="ts">
-import { PropType, defineComponent } from 'vue';
+import { PropType } from 'vue';
 import Layout from '@/components/Layout.vue';
 import { Movie } from '@/assets/ts/dtos/all';
 
-export default defineComponent({
+export default {
     components: { Layout },
 
     props: {
@@ -19,5 +18,5 @@ export default defineComponent({
     created() {
         console.dir(this.movie)
     }
-})
+}
 </script>

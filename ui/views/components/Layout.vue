@@ -1,6 +1,7 @@
 <template>
     <div id="layout">
-        <Head :title="pageTitle" />
+        <Head :title="pageTitle + ' | Vits'" />
+        
         <nav>
             <div class="logo">Vits</div>
             <div class="burger-btn"></div>
@@ -17,16 +18,15 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent } from 'vue';
 import { Head } from '@inertiajs/vue3';
 
-export default defineComponent({
+export default {
     components: { Head },
 
     props: {
         pageTitle: { required: true, type: String }
     }
-});
+}
 </script>
 
 <style lang="scss">
