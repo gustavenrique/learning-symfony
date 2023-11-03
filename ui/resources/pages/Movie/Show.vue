@@ -4,11 +4,11 @@
 </template>
     
 <script lang="ts">
-import { PropType } from 'vue';
-import Layout from '@/components/Layout.vue';
+import { PropType, defineComponent } from 'vue';
+import Layout from '@/components/Layout.vue'
 import { Movie } from '@/assets/ts/dtos/all';
 
-export default {
+export default defineComponent({
     components: { Layout },
 
     props: {
@@ -18,5 +18,5 @@ export default {
     created() {
         console.dir(this.movie)
     }
-}
+})
 </script>

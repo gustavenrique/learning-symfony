@@ -10,7 +10,7 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
-    .addEntry('main', './views/main.ts')
+    .addEntry('main', './resources/assets/ts/main.ts')
 
     .splitEntryChunks()
     .disableSingleRuntimeChunk()
@@ -37,7 +37,7 @@ Encore
     })
 
     .addAliases({
-        '@': path.resolve(__dirname, 'views')
+        '@': path.resolve(__dirname, 'resources')
     })
 
     .addPlugin(new webpack.DefinePlugin({

@@ -3,7 +3,9 @@
 </template>
 
 <script lang='ts'>
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
     props: {
         placeholder: { type: String, required: true }
     },
@@ -11,7 +13,7 @@ export default {
     data: () => ({
 
     })
-}
+})
 </script>
 
 <style lang="scss" scoped>

@@ -10,12 +10,13 @@
 import { Head } from '@inertiajs/vue3';
 import { Movie } from '@/assets/ts/dtos/all';
 import Layout from '@/components/Layout.vue';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
     components: { Head, Layout },
 
     props: {
         movies: Array<Movie>
     },
-}
+})
 </script>

@@ -34,8 +34,9 @@
 import Button from '@/components/Button.vue';
 import Layout from '@/components/Layout.vue';
 import { Head } from '@inertiajs/vue3';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
     components: { Button, Head, Layout },
 
     data: () => ({
@@ -47,7 +48,7 @@ export default {
             alert('You clicked the example button!');
         }
     }
-}
+})
 </script>
 
 <style lang="scss">

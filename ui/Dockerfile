@@ -23,11 +23,12 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | b
 
 # Installing dependencies
 WORKDIR /var/www
-COPY ./*.lock ./*.json ./*config* ./
+COPY ./ ./
 
 RUN rm -rf vendor node_modules
 
-RUN composer install & (npm i -g yarn && yarn)
+RUN composer install 
+RUN npm i -g yarn && yarn
 
 # Creating dev user
 # RUN groupadd --force -g 1000 dev

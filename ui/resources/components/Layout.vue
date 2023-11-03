@@ -19,14 +19,15 @@
 
 <script lang='ts'>
 import { Head } from '@inertiajs/vue3';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
     components: { Head },
 
     props: {
         pageTitle: { required: true, type: String }
     }
-}
+})
 </script>
 
 <style lang="scss">
