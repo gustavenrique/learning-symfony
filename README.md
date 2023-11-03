@@ -44,7 +44,17 @@ symfony console make:fixtures ExampleFixture
 yes | symfony console doctrine:fixture:load
 ```
 
-### Webpack
+## VS Code Setup
+```bash
+# Install recommended extensions
+## Bash
+cat .vscode/extensions.list |% { code --install-extension $_}
+
+## Powershell
+Get-Content .vscode/extensions.list | ForEach-Object { code --install-extension $_ }
+```
+
+## Webpack
 ```bash
 ##### install webpack-encore
 # setup typescript
@@ -65,6 +75,10 @@ docker compose up -d
 
 # run commands inside the app container as root user
 docker exec -u root -it symfony-app bash
+
+# copy node_modules and vendor code from docker container
+sudo docker cp symfony-app:/var/www/node_modules .ui && \
+sudo docker cp symfony-app:/var/www/vendor .ui
 ```
 
 ## Vue + Inertia
