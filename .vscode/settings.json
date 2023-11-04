@@ -12,7 +12,6 @@
 	},
 	"editor.autoIndent": "advanced",
 	"workbench.preferredDarkColorTheme": "One Dark Pro Flat",
-	"tabnine.experimentalAutoImports": true,
 	"editor.fontFamily": "JetBrains Mono Medium",
 	"editor.fontLigatures": true,
 	"editor.fontWeight": "400",
@@ -25,22 +24,18 @@
 	"[python]": {
 		"editor.formatOnType": true
 	},
-	"prettier.jsxSingleQuote": true,
-	"prettier.singleQuote": true,
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[typescript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"prettier.useTabs": true,
 	"typescript.updateImportsOnFileMove.enabled": "always",
 	"[css]": {
 		"editor.defaultFormatter": "vscode.css-language-features"
 	},
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"hediet.vscode-drawio.resizeImages": null,
-	"php.executablePath": "/bin/php",
 	"[php]": {
 		"editor.defaultFormatter": "DEVSENSE.phptools-vscode"
 	},

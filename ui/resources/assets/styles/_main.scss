@@ -1,6 +1,4 @@
-// @forward 'vuetify/settings' with (
-//     $body-font-family: 'JetBrains Mono',
-// );
+// @use 'vuetify';
 
 @tailwind base;
 @tailwind components;
@@ -16,3 +14,21 @@ $bg-light: #F5F5F6;
 .color-light { background-color: $light-color; }
 .color-primary { background-color: $primary-color; }
 .color-dark { background-color: $dark-color; }
+
+body { font-family: 'JetBrains Mono', monospace; }
+
+// Scrollbar
+::-webkit-scrollbar { width: .7rem; }
+
+::-webkit-scrollbar-track {
+    margin-block: .1rem;
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $primary-color;
+    border-radius: 1rem;
+    border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover { background-color: $light-color; }
