@@ -41,5 +41,5 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "exlude": ["./node_modules", "./vendor"],
-  "include": ["./resources/**/*.ts", "./resources/**/*.vue", "./resources/**/*",]
+  "include": ["./resources/**/*"]
 }

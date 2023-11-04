@@ -1,20 +1,33 @@
 <template>
-    <div id="layout">
+    <v-app>
         <Head :title="pageTitle + ' | Vits'" />
         
-        <nav>
-            <div class="logo">Vits</div>
-            <div class="burger-btn"></div>
-        </nav>
+        <v-app-bar :elavation="3">
+            <template v-slot:prepend>
+                <v-app-bar-nav-icon></v-app-bar-nav-icon>
+            </template>
 
-        <div id="content">
+            <v-app-bar-title>Vits</v-app-bar-title>
+
+            <template v-slot:append>
+                <v-btn icon>
+                    <v-icon>mdi-dots-vertical</v-icon>
+                </v-btn>
+            </template>
+        </v-app-bar>
+
+        <v-main>
             <slot />
-        </div>
+        </v-main>
 
-        <footer>
-            2023 - All right reserved to &lt;/&#64;gustavenrique&gt;
-        </footer>
-    </div>
+        <v-footer app>
+            <v-card flat>
+                <v-card-text class="text-center white--text">
+                    &copy; 2023 @gustavenrique. All rights reserved.
+                </v-card-text>
+            </v-card>
+        </v-footer>
+    </v-app>
 </template>
 
 <script lang='ts'>
@@ -31,60 +44,41 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../assets/scss/app';
-
 *,
 *::after,
 *::before {
-    font-family: 'JetBrains Mono', monospace !important;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body {
-    background-color: $primary-color;
-    color: $bg-less-light;
-}
-
-#layout,
 body,
 html {
     min-height: 100vh;
+    font-family: 'JetBrains Mono', monospace;
 }
 
-#layout {
+nav {
+    flex: .25;
+    min-height: 50px !important;
     display: flex;
-    flex-direction: column;
+    align-items: center;
 
-    nav {
-        flex: .25;
-        min-height: 50px !important;
-        display: flex;
-        align-items: center;
-
-        .logo { 
-            font-size: 1.5rem; 
-            font-weight: bold;
-            line-height: 50%;
-            padding: 5px;
-        }
+    .logo { 
+        font-size: 1.5rem; 
+        font-weight: bold;
+        line-height: 50%;
+        padding: 5px;
     }
+}
 
-    #content {
-        flex: 3;
-        background-color: $light-color;
-        padding: 1rem .5rem;
-    }
-
-    footer {
-        flex: .25;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px 5px;
-        box-shadow: 10px 10px 10px rgba(0, 0, 0, .75);
-        text-align: center;
-    }
+footer {
+    flex: .25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 5px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, .75);
+    text-align: center;
 }
 </style>

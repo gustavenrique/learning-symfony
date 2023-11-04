@@ -94,8 +94,16 @@ composer require rompetomp/inertia-bundle # specific for symfony
 ## TailwindCSS
 ```bash
 # install dependencies
-yarn add -D tailwindcss postcss-loader glob-all
+yarn add -D tailwindcss postcss-loader
 
 # create tailwind and postcss config files
 npx tailwindcss init -p
+```
+
+## Vuetify
+```bash
+yarn add webpack-plugin-vuetify vuetify
+
+# choose which icons you want
+yarn add @mdi/font @fortawesome/fontawesome-free -D 
 ```

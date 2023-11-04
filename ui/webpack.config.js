@@ -1,7 +1,8 @@
 const
     Encore = require('@symfony/webpack-encore'),
     path = require('path'),
-    webpack = require('webpack');
+    webpack = require('webpack'),
+    { VuetifyPlugin } = require('webpack-plugin-vuetify');
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
@@ -46,6 +47,7 @@ Encore
     .addPlugin(new webpack.DefinePlugin({
         __VUE_PROD_DEVTOOLS__: false,
         __VUE_OPTIONS_API__: true
-    }));
+    }))
+    .addPlugin(new VuetifyPlugin({ autoImport: true }));
 
 module.exports = Encore.getWebpackConfig();

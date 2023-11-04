@@ -20,12 +20,7 @@
                 </ul>
             </div>
 
-            <Button 
-                style="position: absolute; left: 50%; transform: translate(-50%, 50%);" 
-                class="primary"
-                placeholder="Example" 
-                @click="example" 
-            />
+            <v-btn prepend-icon="$vuetify" variant="tonal">Example</v-btn>
         </div>
     </Layout>
 </template>
@@ -52,7 +47,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../assets/scss/app';
+@import '../assets/styles/main';
 
 .welcome {
     .stack {
