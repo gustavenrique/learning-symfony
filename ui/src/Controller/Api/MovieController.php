@@ -2,27 +2,33 @@
 
 namespace App\Controller\Api;
 
+use App\Service\Interface\MovieServiceInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MovieController extends AbstractController
 {
-    #[Route(
-        path: '/api/movie/{title}',
-        name: 'movie',
-        defaults: ['title' => null],
-        methods: ['GET']
-    )]
-    public function getMovies(?string $title): Response
+    public function __construct(
+        private readonly MovieServiceInterface $movieService,
+        private readonly LoggerInterface $logger,
+    ) {
+    }
+
+    #[Route('/api/movie/', name: 'movie.api.getAll', methods: ['GET'])]
+    public function getAll(): Response
     {
-        return $this->json([
-            'message' => 'Testing the API Controller',
-            'data' => [
-                'id' => 1,
-                'title' => $title,
-                'description' => 'A great movie!'
-            ]
-        ]);
+        $movies = $this->movieService->getAll();
+
+        return $this->json($movies);
+    }
+
+    #[Route('/api/movie/{id}', name: 'movie.api.get', methods: ['GET'])]
+    public function get(int $id): Response
+    {
+        $movie = $this->movieService->get($id);
+
+        return $this->json($movie);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\MovieRepository;
+use App\Service\Interface\MovieServiceInterface;
 use Psr\Log\LoggerInterface;
 use Rompetomp\InertiaBundle\Service\InertiaInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MovieController extends AbstractController
 {
     public function __construct(
-        private readonly MovieRepository $movieRepository,
+        private readonly MovieServiceInterface $service,
         private readonly LoggerInterface $logger,
         private readonly InertiaInterface $inertia
     ) {
@@ -22,7 +23,7 @@ class MovieController extends AbstractController
     #[Route('/', name: 'movie.index')]
     public function index(): Response
     {
-        $movies = $this->movieRepository->findBy([], ['id' => 'desc']);
+        $movies = $this->service->getAll();
 
         return $this->inertia->render('Movie/Index', ['movies' => $movies]);
     }
@@ -30,7 +31,7 @@ class MovieController extends AbstractController
     #[Route('/{id}', name: 'movie.show')]
     public function info(int $id): Response
     {
-        $movie = $this->movieRepository->find($id);
+        $movie = $this->service->get($id);
 
         return $this->inertia->render('Movie/Show', ['movie' => $movie]);
     }

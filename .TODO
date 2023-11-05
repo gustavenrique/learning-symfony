@@ -1,2 +1,12 @@
-- [ ] Use SSR
-- [ ] Enable Hot Module Replacement
+- [ ] Layout
+    - [ ] Create sidebar
+    - [ ] Implement theme switching
+    - [ ] Use grid/flexbox to arrange movies properly
+- [ ] Improve developer and user experience
+    - [ ] Use SSR
+    - [ ] Enable Hot Module Replacement
+- [ ] Learn
+    - [ ] How to prevent getting circular dependents records
+          from database, with DoctrineORM
+    - [ ] How to validate API parameters automatically
+    - [ ] How to send different StatusCodes in Responses
