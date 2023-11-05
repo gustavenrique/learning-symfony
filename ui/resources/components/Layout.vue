@@ -3,7 +3,7 @@
         <v-app-bar :elavation="3">
             <v-app-bar-title class="text-2xl">Vits</v-app-bar-title>
 
-            <p class="">{{ seconds }}</p>
+            <p class="pr-4">{{ seconds }}</p>
 
             <!-- TODO: implement sidebar - https://vuetifyjs.com/en/components/lists/#nav -->
             <template v-slot:append>

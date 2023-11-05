@@ -17,7 +17,10 @@ createInertiaApp({
     },
     
     setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
+        createApp({ 
+            name: 'Vits',
+            render: () => h(App, props),
+        })
             .use(plugin)
             .use(Vuetify)
             .mount(el);

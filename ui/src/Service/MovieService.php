@@ -23,10 +23,10 @@ class MovieService implements MovieServiceInterface
         return MovieMapper::EntitiesToDTOs($movies);
     }
 
-    public function get(int $id): Movie
+    public function get(int $id): Movie|null
     {
         $movie = $this->repository->find($id);
 
-        return MovieMapper::EntityToDTO($movie);
+        return $movie ? MovieMapper::EntityToDTO($movie) : null;
     }
 }

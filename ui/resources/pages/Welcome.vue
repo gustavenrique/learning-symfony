@@ -1,4 +1,6 @@
 <template>
+    <Head title="Welcome!" />
+
     <v-container class="flex align-center">
         <h1 class="text-3xl lg:text-4xl text-center font-extrabold my-4 
             bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-50
@@ -43,8 +45,6 @@ import { defineComponent } from 'vue';
 type Technology = { icon: string, name: string }
 
 export default defineComponent({
-    pageTitle: 'Welcome!',
-
     components: { Button, Head, Link },
 
     data: () => ({

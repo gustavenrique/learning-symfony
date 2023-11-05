@@ -48,19 +48,12 @@ Encore
         __VUE_PROD_DEVTOOLS__: false,
         __VUE_OPTIONS_API__: true
     }))
-    .addPlugin(new VuetifyPlugin({ autoImport: true }))
-    .addPlugin(new webpack.DllReferencePlugin({
-        context: __dirname,
-        manifest: require('./public/dll/vendor.json')
-    }));
+    .addPlugin(new VuetifyPlugin({ autoImport: true }));
 
-const webpackConfig = Encore.getWebpackConfig();
+const config = Encore.getWebpackConfig();
 
-// const fs = require('fs');
+// config.optimization = {
+//     minimizer: [new UglifyJsPlugin()]
+// }
 
-// fs.writeFile('webpack.config.json', JSON.stringify(webpackConfig, null, '\t'), (err) => {
-//     if (err) console.error('Something went wrong!')
-//     else console.info('Everything went OK!')
-// })
-
-module.exports = webpackConfig;
+module.exports = config;

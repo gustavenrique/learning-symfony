@@ -9,5 +9,5 @@ interface MovieServiceInterface
     /** @return Movie[] */
     public function getAll(): array;
 
-    public function get(int $id): Movie;
+    public function get(int $id): Movie|null;
 }
