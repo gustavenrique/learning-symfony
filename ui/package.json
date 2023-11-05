@@ -25,6 +25,7 @@
     "scripts": {
         "dev-server": "encore dev-server",
         "dev": "encore dev",
+        "prewatch": "webpack --config webpack.dll.js",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },

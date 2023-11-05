@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Repository\MovieRepository;
 use App\Service\Interface\MovieServiceInterface;
 use Psr\Log\LoggerInterface;
 use Rompetomp\InertiaBundle\Service\InertiaInterface;

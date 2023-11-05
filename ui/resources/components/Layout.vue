@@ -1,7 +1,5 @@
 <template>
     <v-app>
-        <Head :title="pageTitle + ' | Vits'" />
-        
         <v-app-bar :elavation="3">
             <v-app-bar-title class="text-2xl">Vits</v-app-bar-title>
 
@@ -26,20 +24,13 @@
 </template>
 
 <script lang='ts'>
-import { Head } from '@inertiajs/vue3';
 import { defineComponent } from 'vue';
 
-export default defineComponent({
-    components: { Head },
-
-    props: {
-        pageTitle: { required: true, type: String }
-    },
-
+export default /*#__PURE__*/ defineComponent({
     data: () => ({ seconds: 0 }),
 
     created() {
         setInterval(() => this.seconds++, 1000);
     }
-})
+});
 </script>

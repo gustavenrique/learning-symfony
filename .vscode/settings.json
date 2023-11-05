@@ -1,5 +1,6 @@
 {
-	// FIRST OF ALL! Install the recommended extensions to use this settings properly
+	// 1. Install the recommended extensions
+	// 2. Install the recommended fonts: JetBrains Mono Medium and MesloLGS NF Regular
 	"workbench.iconTheme": "material-icon-theme",
 	"terminal.integrated.defaultProfile.windows": "PowerShell",
 	"terminal.integrated.fontFamily": "JetBrains Mono Medium, MesloLGS NF Regular",

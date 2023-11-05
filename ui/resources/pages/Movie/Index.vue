@@ -1,4 +1,6 @@
 <template>
+    <Head title="Movies" />
+    
     <v-container fluid>
         <v-card
             v-for="movie in movies"
@@ -26,12 +28,10 @@ import { Movie } from '@/assets/ts/dtos/all';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    pageTitle: 'Movies',
-
     components: { Head, },
 
     props: {
         movies: Array<Movie>
     },
-})
+});
 </script>
