@@ -14,13 +14,18 @@ const darkTheme: ThemeDefinition = {
     }
 }
 
+const lightTheme: ThemeDefinition = {
+  dark: false,
+}
+
 export default createVuetify({ 
     components,
     directives,
     theme: {
         defaultTheme: 'dark',
         themes: {
-            dark: darkTheme
+            dark: darkTheme,
+            light: lightTheme
         }
     },
     icons: {
