@@ -15,19 +15,18 @@
     >
         <v-card-title>{{ movie.title }}</v-card-title>
 
-        <v-img :src="movie.imageUrl"></v-img>
+        <v-img :src="movie.imageUrl" class="px-4"></v-img>
 
-        <v-container>
+        <div class="mt-4">
             <v-card-subtitle>Description</v-card-subtitle>
 
             <v-card-text class="text-sm">{{ movie.description }}</v-card-text>
-        </v-container>
+        </div>
 
-        <v-container>
+        <div>
             <v-card-subtitle>Actors</v-card-subtitle>
 
             <v-slide-group
-                selected-class="bg-info"
                 show-arrows
                 v-model="model"
             >
@@ -37,20 +36,27 @@
                 >
                     <v-card
                         color="grey-lighten-1"
-                        :class="['ma-4', selectedClass]"
+                        :class="['ma-4']"
                         height="200"
                         width="100"
                         @click="toggle"
                     >
-                        <div class="d-flex fill-height align-center justify-center">
-                            <v-scale-transition>
-                                <p v-if="isSelected">{{ actor }}</p>
+                        <v-img 
+                            :src="actor.imageUrl" 
+                            class="bg-primary" 
+                            height="200"
+                            width="100"
+                            cover 
+                        >
+                            <v-scale-transition class="fill-height flex items-center text-center bg-neutral-600 opacity-70">
+                                <p v-if="isSelected">{{ actor.name }}</p>
                             </v-scale-transition>
-                        </div>
+                        </v-img>
                     </v-card>
+
                 </v-slide-group-item>
             </v-slide-group>
-        </v-container>
+        </div>
     </v-container>
 </template>
     

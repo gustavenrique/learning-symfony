@@ -9,7 +9,11 @@ class ActorMapper
 {
     public static function EntityToDTO(ActorEntity $actor, bool $getMovies = true): ActorDTO
     {
-        $dto = new ActorDTO($actor->getId(), $actor->getName());
+        $dto = new ActorDTO(
+            $actor->getId(),
+            $actor->getName(),
+            $actor->getImageUrl()
+        );
 
         if ($getMovies)
             $dto->movies = $actor->getMovies()->getValues();

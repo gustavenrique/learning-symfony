@@ -15,20 +15,48 @@
             <v-img :src="movie.imageUrl" :alt="movie.title"></v-img>
 
             <v-card-actions class="justify-space-between">
-                <v-btn color="primary" variant="outlined">See more</v-btn>
-                <v-btn color="secondary">Open description</v-btn>
+                <Link :href="'/movie/' + movie.id">
+                    <v-btn color="primary" variant="outlined">See more</v-btn>
+                </Link>
+                
+                <v-dialog max-height="500">
+                    <template v-slot:activator="{ props }">
+                        <v-icon 
+                            icon="$info" 
+                            class="pr-2"
+                            v-bind="props"
+                        />
+                    </template>
+
+                    <template v-slot:default="{ isActive }">
+                        <v-card :subtitle="movie.title">
+                            <v-card-text class="text-sm">{{ movie.description }}</v-card-text>
+
+                            <v-card-actions>
+                                <v-spacer />
+
+                                <v-btn
+                                    @click="isActive.value = false" 
+                                    variant="outlined"
+                                >
+                                    Close
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </template>
+                </v-dialog>
             </v-card-actions>
         </v-card>
     </v-container>
 </template>
 
 <script lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import { Movie } from '@/assets/ts/dtos/all';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    components: { Head, },
+    components: { Head, Link },
 
     props: {
         movies: Array<Movie>

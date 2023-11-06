@@ -27,8 +27,8 @@ class MovieMapper
     }
 
     /** @param MovieEntity[] $movies */
-    public static function EntitiesToDTOs(array $movies): array
+    public static function EntitiesToDTOs(array $movies, bool $getCompleteActors = false): array
     {
-        return array_map(fn(MovieEntity $movie) => self::EntityToDTO($movie), $movies);
+        return array_map(fn(MovieEntity $movie) => self::EntityToDTO($movie, $getCompleteActors), $movies);
     }
 }

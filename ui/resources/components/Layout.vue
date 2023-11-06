@@ -1,7 +1,9 @@
 <template>
     <v-app>
         <v-app-bar :elavation="3">
-            <v-app-bar-title class="text-2xl">Vits</v-app-bar-title>
+            <v-app-bar-title class="text-2xl">
+                <Link href="/">Vits</Link>
+            </v-app-bar-title>
 
             <p class="pr-4">{{ seconds }}</p>
 
@@ -25,8 +27,11 @@
 
 <script lang='ts'>
 import { defineComponent } from 'vue';
+import { Link } from '@inertiajs/vue3';
 
 export default /*#__PURE__*/ defineComponent({
+    components: { Link },
+
     data: () => ({ seconds: 0 }),
 
     created() {

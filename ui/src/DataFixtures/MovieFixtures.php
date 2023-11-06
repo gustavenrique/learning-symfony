@@ -17,8 +17,8 @@ class MovieFixtures extends Fixture
             'An awesome movie!',
             'https://cdn.pixabay.com/photo/2020/10/28/10/02/captain-america-5692937_1280.jpg',
             new ArrayCollection([
-                $this->getReference('ledger'),
-                $this->getReference('bale')
+                $this->getReference('evans'),
+                $this->getReference('downeyJr')
             ])
         );
 
@@ -28,8 +28,8 @@ class MovieFixtures extends Fixture
             'A dark movie...',
             'https://cdn.pixabay.com/photo/2021/06/18/11/22/batman-6345897_960_720.jpg',
             new ArrayCollection([
-                $this->getReference('evans'),
-                $this->getReference('downeyJr')
+                $this->getReference('ledger'),
+                $this->getReference('bale')
             ])
         );
 

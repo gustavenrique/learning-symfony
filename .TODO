@@ -2,6 +2,7 @@
     - [ ] Create sidebar
     - [ ] Implement theme switching
     - [ ] Use grid/flexbox to arrange movies properly
+    - [ ] Apply responsiveness
 - [ ] Improve developer and user experience
     - [ ] Use SSR
     - [ ] Enable Hot Module Replacement

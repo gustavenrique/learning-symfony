@@ -18,6 +18,9 @@ class Actor
     #[ORM\Column(length: 255)]
     private string $name;
 
+    #[ORM\Column(length: 255)]
+    private string $imageUrl;
+
 
     #[ORM\ManyToMany(targetEntity: Movie::class, mappedBy: 'actors')]
     private Collection $movies;
@@ -27,9 +30,11 @@ class Actor
         $this->movies = new ArrayCollection();
     }
 
-    public static function create(string $name): self
+    public static function create(string $name, string $imageUrl): self
     {
-        return (new self())->setName($name);
+        return (new self())
+            ->setName($name)
+            ->setImageUrl($imageUrl);
     }
 
     public function getId(): int
@@ -45,6 +50,18 @@ class Actor
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getImageUrl(): string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(string $imageUrl): static
+    {
+        $this->imageUrl = $imageUrl;
 
         return $this;
     }

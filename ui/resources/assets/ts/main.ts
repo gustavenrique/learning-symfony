@@ -8,6 +8,11 @@ import Vuetify from './vuetify';
 createInertiaApp({
     title: (title: string) => `${title} | Vits`,
 
+    progress: {
+        delay: 0,
+        includeCSS: true,
+    },
+
     resolve: (name: string) => {
         const page = require(`@/pages/${name}`).default as DefineComponent;
 

@@ -12,7 +12,7 @@ final class Version20231028111257 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Creating tables actor, movie and movie_actor';
     }
 
     public function up(Schema $schema): void
