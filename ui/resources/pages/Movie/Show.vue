@@ -6,8 +6,7 @@
         v-bind="alert"
         variant="outlined"
         class="m-4"
-    >
-    </v-alert>
+    />
 
     <v-container
         v-if="movie"
@@ -71,7 +70,7 @@ type VuetifyAlert = {
     text: string,
     type: "error" | "success" | "warning" | "info" | undefined,
     closable: boolean,
-}
+};
 
 export default defineComponent({
     components: { Layout, Head },
@@ -94,5 +93,5 @@ export default defineComponent({
                 type: 'error'
             }
     }
-})
+});
 </script>

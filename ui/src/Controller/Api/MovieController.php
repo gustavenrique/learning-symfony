@@ -16,7 +16,7 @@ class MovieController extends AbstractController
     ) {
     }
 
-    #[Route('/api/movie/', name: 'movie.api.getAll', methods: ['GET'])]
+    #[Route('/api/movie', name: 'movie.api.getAll', methods: ['GET'])]
     public function getAll(): Response
     {
         $movies = $this->movieService->getAll();

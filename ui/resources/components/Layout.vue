@@ -1,16 +1,13 @@
 <template>
     <v-app>
-        <v-app-bar :elavation="3">
+        <v-app-bar :elevation="3">
+            <v-app-bar-nav-icon @click="showDrawer = !showDrawer"></v-app-bar-nav-icon>
+
             <v-app-bar-title class="text-2xl">
                 <Link href="/">Vits</Link>
             </v-app-bar-title>
 
-            <p class="pr-4">{{ seconds }}</p>
-
-            <!-- TODO: implement sidebar - https://vuetifyjs.com/en/components/lists/#nav -->
-            <template v-slot:append>
-                <v-app-bar-nav-icon></v-app-bar-nav-icon>
-            </template>
+            <p class="pr-6">{{ seconds }}</p>
         </v-app-bar>
 
         <v-main>
@@ -32,7 +29,7 @@ import { Link } from '@inertiajs/vue3';
 export default /*#__PURE__*/ defineComponent({
     components: { Link },
 
-    data: () => ({ seconds: 0 }),
+    data: () => ({ seconds: 0, showDrawer: false }),
 
     created() {
         setInterval(() => this.seconds++, 1000);
