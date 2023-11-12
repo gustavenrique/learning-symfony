@@ -5,6 +5,8 @@ services:
     image: gustavenrique/symfony-app
     container_name: symfony-app
     restart: always
+    extra_hosts:
+      - host.docker.internal:host-gateway
     build:
       context: ./ui
       dockerfile: Dockerfile

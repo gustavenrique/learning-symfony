@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<? declare(strict_types=1);
 
 namespace App\Controller\Api;
 
@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/api')]
 class MovieController extends AbstractController
 {
     public function __construct(
@@ -16,7 +17,7 @@ class MovieController extends AbstractController
     ) {
     }
 
-    #[Route('/api/movie', name: 'movie.api.getAll', methods: ['GET'])]
+    #[Route('/movie', name: 'api.movie.getAll', methods: ['GET'])]
     public function getAll(): Response
     {
         $movies = $this->movieService->getAll();
@@ -24,7 +25,7 @@ class MovieController extends AbstractController
         return $this->json($movies);
     }
 
-    #[Route('/api/movie/{id}', name: 'movie.api.get', methods: ['GET'])]
+    #[Route('/movie/{id}', name: 'api.movie.get', methods: ['GET'])]
     public function get(int $id): Response
     {
         $movie = $this->movieService->get($id);

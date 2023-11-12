@@ -6,8 +6,8 @@ RUN apt update && apt install -y \
     curl \
     zip \
     unzip \
-    vim \
     libicu-dev \
+    vim \
     npm
 
 RUN npm i -g n && n 20 && npm i -g npm@latest
@@ -20,6 +20,11 @@ RUN curl -sS https://getcomposer.org/installer \
 
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash \
     && apt install symfony-cli
+
+# Setting Xdebug up
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+COPY ./xdebug.ini "${PHP_INI_DIR}/conf.d"
 
 # Installing dependencies
 WORKDIR /var/www

@@ -21,7 +21,6 @@ class Actor
     #[ORM\Column(length: 255)]
     private string $imageUrl;
 
-
     #[ORM\ManyToMany(targetEntity: Movie::class, mappedBy: 'actors')]
     private Collection $movies;
 
