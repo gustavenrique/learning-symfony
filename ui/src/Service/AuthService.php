@@ -20,19 +20,24 @@ class AuthService implements AuthServiceInterface
 
     public function register(Register $request): bool
     {
-        $user = (new User())->setUsername($request->username);
+        try {
+            $user = (new User())
+                ->setUsername($request->username);
 
-        $isUsernameUnique = $this->repository->count([
-            'username' => $user->getUserIdentifier()
-        ]) < 1;
+            $isUsernameUnique = $this->repository->count([
+                'username' => $user->getUserIdentifier()
+            ]) < 1;
 
-        if (!$isUsernameUnique)
+            if (!$isUsernameUnique)
+                return false;
+
+            $user
+                ->setPassword($this->passwordHasher->hashPassword($user, $request->password))
+                ->setRoles($user->getRoles());
+
+            return $this->repository->create($user);
+        } catch (\Exception $ex) {
             return false;
-
-        $user->setPassword(
-            $this->passwordHasher->hashPassword($user, $user->getPassword())
-        );
-
-        return $this->repository->create($user);
+        }
     }
 }

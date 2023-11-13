@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/auth')]
 class AuthController extends AbstractController
 {
     public function __construct(private readonly InertiaInterface $inertia)
@@ -22,5 +23,11 @@ class AuthController extends AbstractController
     public function register(): Response
     {
         return $this->inertia->render('Auth/Register');
+    }
+
+    #[Route('/login', name: 'auth.login', methods: ['GET'])]
+    public function login(): Response
+    {
+        return $this->inertia->render('Auth/Login');
     }
 }

@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/api')]
+#[Route('/api/movie')]
 class MovieController extends AbstractController
 {
     public function __construct(
@@ -17,7 +17,7 @@ class MovieController extends AbstractController
     ) {
     }
 
-    #[Route('/movie', name: 'api.movie.getAll', methods: ['GET'])]
+    #[Route('/', name: 'api.movie.getAll', methods: ['GET'])]
     public function getAll(): Response
     {
         $movies = $this->movieService->getAll();
@@ -25,7 +25,7 @@ class MovieController extends AbstractController
         return $this->json($movies);
     }
 
-    #[Route('/movie/{id}', name: 'api.movie.get', methods: ['GET'])]
+    #[Route('/{id}', name: 'api.movie.get', methods: ['GET'])]
     public function get(int $id): Response
     {
         $movie = $this->movieService->get($id);

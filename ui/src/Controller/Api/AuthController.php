@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/api')]
+#[Route('/api/auth')]
 class AuthController extends AbstractController
 {
     public function __construct(
@@ -21,12 +21,10 @@ class AuthController extends AbstractController
     #[Route('/register', name: 'api.auth.register', methods: ['POST'])]
     public function register(#[MapRequestPayload] Register $body)
     {
-        print_r($body);
-
         $response = $this->authService->register($body);
 
         return $this
             ->json($response)
-            ->setStatusCode(200);
+            ->setStatusCode($response ? 200 : 500);
     }
 }

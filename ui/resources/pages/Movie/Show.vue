@@ -64,13 +64,7 @@ import { PropType, defineComponent } from 'vue';
 import Layout from '@/components/Layout.vue'
 import { Movie } from '@/assets/ts/dtos/all';
 import { Head } from '@inertiajs/vue3';
-
-type VuetifyAlert = {
-    title: string,
-    text: string,
-    type: "error" | "success" | "warning" | "info" | undefined,
-    closable: boolean,
-};
+import { VuetifyAlert } from '@/assets/ts/utils/VuetifyAlert';
 
 export default defineComponent({
     components: { Layout, Head },

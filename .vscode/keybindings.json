@@ -1,8 +1,8 @@
 [
     {
-    "key": "ctrl+pagedown",
-    "command": "workbench.action.terminal.focusNext",
-    "when": "terminalFocus"
+        "key": "ctrl+pagedown",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus"
     },
     {
         "key": "ctrl+pageup",

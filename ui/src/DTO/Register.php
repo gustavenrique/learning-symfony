@@ -2,6 +2,7 @@
 
 namespace App\DTO;
 
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Register
@@ -21,6 +22,7 @@ class Register
         public readonly string $password,
 
     #[Assert\IsTrue]
+    #[SerializedName('agreed')]
         public readonly bool $agreeWithUseTerms
     ) {
     }

@@ -20,8 +20,13 @@
             <v-divider />
 
             <v-list density="compact" nav>
-                <v-list-item title="Home" prepend-icon="mdi-home" value="home"></v-list-item>
-                <v-list-item title="Sign In" prepend-icon="mdi-login" value="signin"></v-list-item>
+                <Link href="/">
+                    <v-list-item title="Home" prepend-icon="mdi-home" value="home"></v-list-item>
+                </Link>
+
+                <Link href="/auth/register">
+                    <v-list-item title="Register" prepend-icon="mdi-account-plus" value="signup"></v-list-item>
+                </Link>
             </v-list>
         </v-navigation-drawer>
 
