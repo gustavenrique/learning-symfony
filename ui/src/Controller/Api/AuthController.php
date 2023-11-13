@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api;
 
+use App\DTO\Login;
 use App\DTO\Register;
 use App\Service\Interface\AuthServiceInterface;
 use Psr\Log\LoggerInterface;
@@ -26,5 +27,17 @@ class AuthController extends AbstractController
         return $this
             ->json($response)
             ->setStatusCode($response ? 200 : 500);
+    }
+
+    #[Route(path: '/login', name: 'api.auth.login', methods: ['POST'])]
+    public function login(#[MapRequestPayload] Login $body): void
+    {
+        // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    #[Route(path: '/logout', name: 'api.auth.logout')]
+    public function logout(): void
+    {
+        // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }

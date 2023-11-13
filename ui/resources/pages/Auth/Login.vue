@@ -80,10 +80,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { Head } from '@inertiajs/vue3'
+import { DefineComponent, defineComponent } from 'vue';
+import { Head, router } from '@inertiajs/vue3'
 import { VuetifyAlert } from '@/assets/ts/utils/VuetifyAlert';
 import { SubmitEventPromise } from 'vuetify';
+import axios from 'axios';
 
 export default defineComponent({
     components: { Head },
@@ -107,8 +108,41 @@ export default defineComponent({
     }),
 
     methods: {
-        login(event: SubmitEventPromise) {
-            console.log('gonna log in!');
+        async login(event: SubmitEventPromise) {
+            let error: string = '';
+
+            try {
+                const form = this.$refs.form as DefineComponent;
+
+                if (!form.isValid) return;
+
+                this.loading = true;
+
+                console.log('request form:', this.form)
+
+                const { data }: { data: unknown } = await axios.post('/api/auth/login', this.form);
+
+                console.log(data);
+            } catch (e) {
+                console.error(e);
+
+                if (e != null && typeof e === 'object' && 'message' in e) {
+                    const errorMessage = e.message;
+
+                    if (typeof errorMessage === 'string')
+                        error = errorMessage;
+                }
+            } finally {
+                this.loading = false;
+
+                if (error) 
+                    this.alert = {
+                        title: 'Failed to Login',
+                        text: error ? error : 'Something went wrong while trying to log you in',
+                        type: 'error',
+                        closable: true
+                    };
+            }
         }
     }
 });

@@ -14,6 +14,16 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            custom_authenticator: App\Security\Authenticator
+            logout:
+                path: api.auth.logout
+                target: movie.index
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /
+                always_remember_me: true
             
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }

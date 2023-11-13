@@ -40,7 +40,7 @@
                     </p>
                     <p>
                         The name Vits actually stands for <span class="text-sky-400">Vue, Inertia, TypeScript and Symfony</span>, 
-                        which are the main technologies used in the stack seen below.
+                        which are the main technologies used in the stack.
                     </p>
                 </v-container>
 

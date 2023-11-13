@@ -30,7 +30,7 @@
 
                     <template v-slot:default="{ isActive }">
                         <v-card :subtitle="movie.title">
-                            <v-card-text class="text-sm">{{ movie.description }}</v-card-text>
+                            <v-card-text class="text-sm max-w-[300px]">{{ movie.description }}</v-card-text>
 
                             <v-card-actions>
                                 <v-spacer />

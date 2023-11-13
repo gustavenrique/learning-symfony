@@ -52,8 +52,4 @@ Encore
 
 const config = Encore.getWebpackConfig();
 
-// config.optimization = {
-//     minimizer: [new UglifyJsPlugin()]
-// }
-
 module.exports = config;

@@ -2,15 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\RegistrationFormType;
-use Doctrine\ORM\EntityManagerInterface;
 use Rompetomp\InertiaBundle\Service\InertiaInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 #[Route('/auth')]
 class AuthController extends AbstractController
@@ -25,9 +21,22 @@ class AuthController extends AbstractController
         return $this->inertia->render('Auth/Register');
     }
 
-    #[Route('/login', name: 'auth.login', methods: ['GET'])]
-    public function login(): Response
+    #[Route(path: '/login', name: 'auth.login', methods: ['GET'])]
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->inertia->render('Auth/Login');
+        if ($this->getUser()) {
+            return $this->redirectToRoute('movie.index');
+        }
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->inertia->render('Auth/Login', [
+            'last_username' => $lastUsername,
+            $error
+        ]);
     }
 }
