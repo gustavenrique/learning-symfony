@@ -1,13 +1,15 @@
+- [ ] Bugs
+    - [ ] Sidebar sometimes doesn't recognize logged in user
 - [ ] Layout
-    - [ ] Create sidebar
-    - [ ] Implement theme switching
+    - [x] Create sidebar
+    - [x] Implement theme switching
     - [ ] Use grid/flexbox to arrange movies properly
     - [ ] Apply responsiveness
 - [ ] Improve developer and user experience
     - [ ] Use SSR
     - [ ] Enable Hot Module Replacement
 - [ ] Learn
-    - [ ] How to prevent getting circular dependents records
+    - [x] How to prevent getting circular dependents records
           from database, with DoctrineORM
-    - [ ] How to validate API parameters automatically
+    - [x] How to validate API parameters automatically
     - [ ] How to send different StatusCodes in Responses

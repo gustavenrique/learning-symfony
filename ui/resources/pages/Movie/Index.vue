@@ -59,7 +59,8 @@ export default defineComponent({
     components: { Head, Link },
 
     props: {
-        movies: Array<Movie>
+        movies: Array<Movie>,
+        user: Object
     },
 });
 </script>

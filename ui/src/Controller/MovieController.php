@@ -8,6 +8,7 @@ use Rompetomp\InertiaBundle\Service\InertiaInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/movie')]
 class MovieController extends AbstractController
@@ -24,10 +25,18 @@ class MovieController extends AbstractController
     {
         $movies = $this->service->getAll();
 
+        $user = $this->getUser();
+
+        $this->inertia->share('user', [
+            'username' => $user?->getUserIdentifier(),
+            'roles' => $user?->getRoles(),
+        ]);
+
         return $this->inertia->render('Movie/Index', ['movies' => $movies]);
     }
 
     #[Route('/{id}', name: 'movie.show')]
+    #[IsGranted('ROLE_USER')]
     public function info(int $id): Response
     {
         $movie = $this->service->get($id);

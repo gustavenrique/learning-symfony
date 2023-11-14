@@ -31,19 +31,15 @@ class AuthController extends AbstractController
             return $this->redirectToRoute('movie.index');
         }
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
         $payload = [
             'csrf_token' => $this->csrfService->getToken('authenticate')->getValue()
         ];
 
+        $lastUsername = $authenticationUtils->getLastUsername();
         if ($lastUsername)
             $payload['last_username'] = $lastUsername;
 
+        $error = $authenticationUtils->getLastAuthenticationError();
         if ($error)
             $payload['error'] = $error;
 

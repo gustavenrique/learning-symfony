@@ -83,10 +83,10 @@
 
 <script lang="ts">
 import { DefineComponent, PropType, defineComponent } from 'vue';
-import { Head, Link } from '@inertiajs/vue3'
+import { Head, Link, router } from '@inertiajs/vue3'
 import { VuetifyAlert } from '@/assets/ts/utils/VuetifyAlert';
 import { SubmitEventPromise } from 'vuetify';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 type ErrorProp = Object | null;
 type LastUsernameProp = string | null;
@@ -120,7 +120,10 @@ export default defineComponent({
 
     methods: {
         async login(event: SubmitEventPromise) {
-            let error: string = '';
+            const error = {
+                occurred: false,
+                message: ''
+            };
 
             try {
                 const form = this.$refs.form as DefineComponent;
@@ -129,30 +132,34 @@ export default defineComponent({
 
                 this.loading = true;
 
-                // make sure the header Content-Type is purely 'application/json'
-                const { data }: { data: unknown } = await axios
+                const { data, status }: AxiosResponse = await axios
                     .post(
                         '/api/auth/login', {
                             ...this.form,
                             _csrf_token: this.csrf_token
                         },
                     );
+
+                if ((status >= 200 && status <= 299) || status == 302)
+                    location.reload();
             } catch (e) {
                 console.error(e);
 
                 if (e != null && typeof e === 'object' && 'message' in e) {
                     const errorMessage = e.message;
 
-                    if (typeof errorMessage === 'string')
-                        error = errorMessage;
+                    if (typeof errorMessage === 'string') {
+                        error.message = errorMessage;
+                        error.occurred = true;
+                    }
                 }
             } finally {
                 this.loading = false;
 
-                if (error) 
+                if (error.occurred) 
                     this.alert = {
                         title: 'Failed to Login',
-                        text: error ? error : 'Something went wrong while trying to log you in',
+                        text: error.message || 'Something went wrong while trying to log you in',
                         type: 'error',
                         closable: true
                     };

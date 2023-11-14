@@ -15,7 +15,7 @@
         </v-app-bar>
 
         <v-navigation-drawer v-model="showSidebar">
-            <v-list-item title="Guest" prepend-icon="mdi-account-circle"></v-list-item>
+            <v-list-item :title="userInfo?.username ?? 'Guest'" prepend-icon="mdi-account-circle"></v-list-item>
 
             <v-divider />
 
@@ -24,9 +24,19 @@
                     <v-list-item title="Home" prepend-icon="mdi-home" value="home"></v-list-item>
                 </Link>
 
-                <Link href="/auth/register">
-                    <v-list-item title="Register" prepend-icon="mdi-account-plus" value="signup"></v-list-item>
+                <Link href="/api/auth/logout" v-if="userInfo?.username">
+                    <v-list-item title="Logout" prepend-icon="mdi-logout" value="logout"></v-list-item>
                 </Link>
+
+                <div v-else>
+                    <Link href="/auth/register">
+                        <v-list-item title="Register" prepend-icon="mdi-account-plus" value="signup"></v-list-item>
+                    </Link>
+
+                    <Link href="/auth/login">
+                        <v-list-item title="Login" prepend-icon="mdi-login" value="login"></v-list-item>
+                    </Link>
+                </div>
             </v-list>
         </v-navigation-drawer>
 
@@ -45,7 +55,8 @@
 <script lang='ts'>
 import { defineComponent } from 'vue';
 import { Link } from '@inertiajs/vue3';
-import { useTheme } from 'vuetify/lib/framework.mjs';
+import { useTheme } from 'vuetify';
+import { User } from '@/assets/ts/dtos/all';
 
 export default /*#__PURE__*/ defineComponent({
     setup() {
@@ -54,7 +65,10 @@ export default /*#__PURE__*/ defineComponent({
 
     components: { Link },
 
-    data: () => ({ seconds: 0, showSidebar: false }),
+    data: () => ({ 
+        seconds: 0, 
+        showSidebar: false
+    }),
 
     created() {
         setInterval(() => this.seconds++, 1000);
@@ -63,6 +77,14 @@ export default /*#__PURE__*/ defineComponent({
     methods: {
         toggleTheme() {
             this.theme.global.name.value = this.theme.global.current.value.dark ? 'light' : 'dark';
+        }
+    },
+
+    computed: {
+        userInfo() {
+            const user: unknown = this.$attrs?.user;
+
+            return user as User|null;
         }
     }
 });
