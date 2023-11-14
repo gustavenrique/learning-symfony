@@ -149,7 +149,7 @@ export default defineComponent({
 
                 if (!ok) error = true;
 
-                router.visit('/auth/login')
+                router.visit('/auth/login');
             } catch (e) {
                 error = true;
                 console.error(e);

@@ -2,6 +2,7 @@
 
 namespace App\DTO;
 
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Login
@@ -14,6 +15,9 @@ class Login
     #[Assert\NotBlank]
     #[Assert\Length(min: 4, max: 150)]
         public readonly string $password,
+
+    #[SerializedName("_csrf_token")]
+        public readonly string $csrfToken,
     ) {
     }
 }

@@ -29,6 +29,7 @@
                     prepend-inner-icon="mdi-account"
                     variant="outlined"
                     :rules="validations.username"
+                    :disabled="loading"
                 ></v-text-field>
 
                 <div class="text-subtitle-1 text-medium-emphasis d-flex align-center">
@@ -45,6 +46,7 @@
                     variant="outlined"
                     @click:append-inner="showPassword = !showPassword"
                     :rules="validations.password"
+                    :disabled="loading"
                 ></v-text-field>
 
                 <v-btn
@@ -80,14 +82,23 @@
 </template>
 
 <script lang="ts">
-import { DefineComponent, defineComponent } from 'vue';
-import { Head, router } from '@inertiajs/vue3'
+import { DefineComponent, PropType, defineComponent } from 'vue';
+import { Head, Link } from '@inertiajs/vue3'
 import { VuetifyAlert } from '@/assets/ts/utils/VuetifyAlert';
 import { SubmitEventPromise } from 'vuetify';
 import axios from 'axios';
 
+type ErrorProp = Object | null;
+type LastUsernameProp = string | null;
+
 export default defineComponent({
-    components: { Head },
+    components: { Head, Link },
+
+    props: {
+        csrf_token: String,
+        last_username: String as PropType<LastUsernameProp>,
+        error: Object as PropType<ErrorProp>
+    },
 
     data: () => ({
         loading: false,
@@ -118,11 +129,14 @@ export default defineComponent({
 
                 this.loading = true;
 
-                console.log('request form:', this.form)
-
-                const { data }: { data: unknown } = await axios.post('/api/auth/login', this.form);
-
-                console.log(data);
+                // make sure the header Content-Type is purely 'application/json'
+                const { data }: { data: unknown } = await axios
+                    .post(
+                        '/api/auth/login', {
+                            ...this.form,
+                            _csrf_token: this.csrf_token
+                        },
+                    );
             } catch (e) {
                 console.error(e);
 

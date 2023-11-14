@@ -18,6 +18,9 @@ symfony server:start
 
 # create controller + view
 symfony console make:controller ExampleController
+
+# see services symfony provides outta the box
+symfony console debug:autowiring
 ```
 
 ### Database

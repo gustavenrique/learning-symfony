@@ -7,6 +7,7 @@ use App\DTO\Register;
 use App\Service\Interface\AuthServiceInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -30,9 +31,9 @@ class AuthController extends AbstractController
     }
 
     #[Route(path: '/login', name: 'api.auth.login', methods: ['POST'])]
-    public function login(#[MapRequestPayload] Login $body): void
+    public function login(Request $request)
     {
-        // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        return $request;
     }
 
     #[Route(path: '/logout', name: 'api.auth.logout')]
