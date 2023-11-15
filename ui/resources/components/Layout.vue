@@ -70,23 +70,29 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent } from 'vue';
+import { defineComponent, provide, ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import { useTheme } from 'vuetify';
 import { User } from '@/assets/ts/dtos/all';
 import axios, { AxiosResponse } from 'axios';
 
 export default /*#__PURE__*/ defineComponent({
-    setup() {
-        return { theme: useTheme() };
-    },  
-
     components: { Link },
+
+    setup: () => {
+        const user = ref(null as User);
+
+        provide('user', user);
+
+        return {
+            theme: useTheme(),    
+            user,
+        }
+    },  
 
     data: () => ({ 
         seconds: 0, 
         showSidebar: false,
-        user: null as User,
         loading: false,
     }),
 
@@ -109,7 +115,7 @@ export default /*#__PURE__*/ defineComponent({
 
                 const { data: user }: AxiosResponse = await axios.get('/api/auth/whoami');
 
-                this.user = user as User;
+                this.user = Object.freeze(user) as User;
             } catch (e) {
                 console.error(e);
             } finally {

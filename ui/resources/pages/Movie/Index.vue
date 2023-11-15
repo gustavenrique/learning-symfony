@@ -52,15 +52,20 @@
 
 <script lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { Movie } from '@/assets/ts/dtos/all';
-import { defineComponent } from 'vue';
+import { Movie, User } from '@/assets/ts/dtos/all';
+import { defineComponent, inject } from 'vue';
 
 export default defineComponent({
     components: { Head, Link },
 
     props: {
         movies: Array<Movie>,
-        user: Object
     },
+
+    setup() {
+        return {
+            user: inject('user') as User
+        }
+    }
 });
 </script>
