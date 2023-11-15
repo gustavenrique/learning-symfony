@@ -1,8 +1,10 @@
-<?php
+<? declare(strict_types=1);
 
 namespace App\Security;
 
-use App\DTO\Login;
+use App\DTO\Request\Login;
+use App\Service\Interface\AuthServiceInterface;
+use Rompetomp\InertiaBundle\Service\InertiaInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,6 +31,8 @@ class Authenticator extends AbstractLoginFormAuthenticator
     public function __construct(
         private readonly UrlGeneratorInterface $urlGenerator,
         private readonly SerializerInterface $serializer,
+        private readonly AuthServiceInterface $authService,
+        private readonly InertiaInterface $inertia,
     ) {
     }
 
@@ -50,6 +54,11 @@ class Authenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        $user = $this->authService->getCurrentUser();
+
+        $this->inertia->share('user', $user);
+        // TODO: make sure that inertia service is a singleton
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }

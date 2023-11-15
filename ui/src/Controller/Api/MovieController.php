@@ -22,7 +22,9 @@ class MovieController extends AbstractController
     {
         $movies = $this->movieService->getAll();
 
-        return $this->json($movies);
+        return $this
+            ->json($movies)
+            ->setStatusCode($movies?->status);
     }
 
     #[Route('/{id}', name: 'api.movie.get', methods: ['GET'])]

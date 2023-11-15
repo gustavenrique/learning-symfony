@@ -21,6 +21,9 @@ symfony console make:controller ExampleController
 
 # see services symfony provides outta the box
 symfony console debug:autowiring
+
+# see all event listeners and subscribers
+symfony console debug:event-dispatcher
 ```
 
 ### Database

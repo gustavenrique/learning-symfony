@@ -15,7 +15,13 @@
         </v-app-bar>
 
         <v-navigation-drawer v-model="showSidebar">
-            <v-list-item :title="userInfo?.username ?? 'Guest'" prepend-icon="mdi-account-circle"></v-list-item>
+            <v-list-item v-if="!loading" :title="user?.username ?? 'Guest'" prepend-icon="mdi-account-circle"></v-list-item>
+            <v-progress-circular 
+                v-else
+                indeterminate 
+                color="primary" 
+                class="pl-2"
+            ></v-progress-circular>
 
             <v-divider />
 
@@ -24,7 +30,18 @@
                     <v-list-item title="Home" prepend-icon="mdi-home" value="home"></v-list-item>
                 </Link>
 
-                <Link href="/api/auth/logout" v-if="userInfo?.username">
+                <v-progress-circular 
+                    v-if="loading" 
+                    indeterminate 
+                    color="primary" 
+                    class="pl-2"
+                ></v-progress-circular>
+
+                <Link 
+                    href='/api/auth/logout' 
+                    @click='user = null' 
+                    v-else-if="user?.username"
+                >
                     <v-list-item title="Logout" prepend-icon="mdi-logout" value="logout"></v-list-item>
                 </Link>
 
@@ -57,6 +74,7 @@ import { defineComponent } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import { useTheme } from 'vuetify';
 import { User } from '@/assets/ts/dtos/all';
+import axios, { AxiosResponse } from 'axios';
 
 export default /*#__PURE__*/ defineComponent({
     setup() {
@@ -67,25 +85,37 @@ export default /*#__PURE__*/ defineComponent({
 
     data: () => ({ 
         seconds: 0, 
-        showSidebar: false
+        showSidebar: false,
+        user: null as User,
+        loading: false,
     }),
 
     created() {
         setInterval(() => this.seconds++, 1000);
+
+        this.getCurrentUser();
     },
 
     methods: {
         toggleTheme() {
-            this.theme.global.name.value = this.theme.global.current.value.dark ? 'light' : 'dark';
+            const theme = this.theme.global;
+
+            theme.name.value = theme.current.value.dark ? 'light' : 'dark';
+        },
+
+        async getCurrentUser() {
+            try {
+                this.loading = true;
+
+                const { data: user }: AxiosResponse = await axios.get('/api/auth/whoami');
+
+                this.user = user as User;
+            } catch (e) {
+                console.error(e);
+            } finally {
+                this.loading = false;
+            }
         }
     },
-
-    computed: {
-        userInfo() {
-            const user: unknown = this.$attrs?.user;
-
-            return user as User|null;
-        }
-    }
 });
 </script>

@@ -3,6 +3,8 @@
 namespace App\Service;
 
 use App\DTO\Movie;
+use App\DTO\Response\ResponseWrapper;
+use App\Factory\ResponseFactory;
 use App\Mapper\MovieMapper;
 use App\Repository\MovieRepository;
 use App\Service\Interface\MovieServiceInterface;
@@ -16,11 +18,13 @@ class MovieService implements MovieServiceInterface
     ) {
     }
 
-    public function getAll(): array
+    public function getAll(): ResponseWrapper
     {
         $movies = $this->repository->findBy([], ['id' => 'desc']);
 
-        return MovieMapper::EntitiesToDTOs($movies);
+        return ResponseFactory::Ok(
+            MovieMapper::EntitiesToDTOs($movies)
+        );
     }
 
     public function get(int $id): Movie|null

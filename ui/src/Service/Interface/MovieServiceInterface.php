@@ -3,11 +3,12 @@
 namespace App\Service\Interface;
 
 use App\DTO\Movie;
+use App\DTO\Response\ResponseWrapper;
 
 interface MovieServiceInterface
 {
-    /** @return Movie[] */
-    public function getAll(): array;
+    /** @return ResponseWrapper<Movie[]> */
+    public function getAll(): ResponseWrapper;
 
     public function get(int $id): Movie|null;
 }

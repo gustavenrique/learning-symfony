@@ -25,14 +25,9 @@ class MovieController extends AbstractController
     {
         $movies = $this->service->getAll();
 
-        $user = $this->getUser();
-
-        $this->inertia->share('user', [
-            'username' => $user?->getUserIdentifier(),
-            'roles' => $user?->getRoles(),
+        return $this->inertia->render('Movie/Index', [
+            'movies' => $movies?->data
         ]);
-
-        return $this->inertia->render('Movie/Index', ['movies' => $movies]);
     }
 
     #[Route('/{id}', name: 'movie.show')]

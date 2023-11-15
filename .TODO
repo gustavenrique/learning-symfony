@@ -9,7 +9,8 @@
     - [ ] Use SSR
     - [ ] Enable Hot Module Replacement
 - [ ] Learn
+    - [x] Event Listeners
     - [x] How to prevent getting circular dependents records
           from database, with DoctrineORM
     - [x] How to validate API parameters automatically
-    - [ ] How to send different StatusCodes in Responses
+    - [x] How to send different StatusCodes in Responses

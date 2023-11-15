@@ -2,12 +2,14 @@
 
 namespace App\Service;
 
-use App\DTO\Register;
+use App\DTO\Request\Register;
 use App\Entity\User;
+use App\DTO\User as UserDTO;
 use App\Repository\UserRepository;
 use App\Service\Interface\AuthServiceInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class AuthService implements AuthServiceInterface
 {
@@ -15,6 +17,7 @@ class AuthService implements AuthServiceInterface
         private readonly UserRepository $repository,
         private readonly LoggerInterface $logger,
         private readonly UserPasswordHasherInterface $passwordHasher,
+        private readonly TokenStorageInterface $tokenStorage,
     ) {
     }
 
@@ -39,5 +42,14 @@ class AuthService implements AuthServiceInterface
         } catch (\Exception $ex) {
             return false;
         }
+    }
+
+    public function getCurrentUser(): UserDTO
+    {
+        $token = $this->tokenStorage->getToken();
+
+        $user = $token?->getUser();
+
+        return new UserDTO($user?->getUserIdentifier(), $user?->getRoles());
     }
 }
