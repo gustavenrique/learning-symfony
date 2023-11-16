@@ -1,5 +1,23 @@
 # Symfony
 
+This is a mini-project I made, in order to learn the basic Symfony features, from Routing and DI to Events and Security, 
+as well as integrating it with some front-end tech stack.
+
+## Pages
+### Welcome
+<img src='https://github.com/gustavenrique/learning-symfony/assets/81171856/79430b62-84a2-41f0-9ae8-a20fb0e85d20' width='700px' />
+
+### Auth
+<img src='https://github.com/gustavenrique/learning-symfony/assets/81171856/05d0cee8-ac85-4cc3-98ca-a09d561a214f' width='350px' />
+<img src='https://github.com/gustavenrique/learning-symfony/assets/81171856/37e5eb0a-e69e-4e64-a2d7-af033b0ceb6f' width='350px' />
+
+### Movies
+<img src='https://github.com/gustavenrique/learning-symfony/assets/81171856/c42994bc-6aac-49f7-96c0-8d67053a8c31' width='350px' />
+<img src='https://github.com/gustavenrique/learning-symfony/assets/81171856/54f36b93-9692-4440-ac34-00a6cbe69ff6' width='350px' />
+
+
+
+
 ## Commands
 ### Basics
 
