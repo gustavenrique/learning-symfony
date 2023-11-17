@@ -32,16 +32,9 @@ class AuthController extends AbstractController
         }
 
         $payload = [
-            'csrf_token' => $this->csrfService->getToken('authenticate')->getValue()
+            'csrf_token' => $this->csrfService->getToken('authenticate')->getValue(),
+            'last_username' => $authenticationUtils->getLastUsername(),
         ];
-
-        $lastUsername = $authenticationUtils->getLastUsername();
-        if ($lastUsername)
-            $payload['last_username'] = $lastUsername;
-
-        $error = $authenticationUtils->getLastAuthenticationError();
-        if ($error)
-            $payload['error'] = $error;
 
         return $this->inertia->render('Auth/Login', $payload);
     }

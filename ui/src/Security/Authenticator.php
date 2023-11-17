@@ -2,7 +2,6 @@
 
 namespace App\Security;
 
-use App\Controller\ViewController;
 use App\DTO\Request\Login;
 use App\Service\Interface\AuthServiceInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -45,7 +44,7 @@ class Authenticator extends AbstractLoginFormAuthenticator
             new UserBadge($dto->username),
             new PasswordCredentials($dto->password),
             [
-                new CsrfTokenBadge('authenticate', $dto->csrfToken),
+                // new CsrfTokenBadge('authenticate', $dto->csrfToken),
                 new RememberMeBadge(),
             ]
         );
@@ -60,21 +59,6 @@ class Authenticator extends AbstractLoginFormAuthenticator
         return new RedirectResponse($this->urlGenerator->generate('movie.index'));
     }
 
-    protected function getLoginUrl(Request $request): string
-    {
-        return $this->urlGenerator->generate(self::LOGIN_API_ROUTE);
-    }
-
-    private function getLoginPageUrl()
-    {
-        return $this->urlGenerator->generate(self::LOGIN_PAGE_ROUTE);
-    }
-
-    public function supports(Request $request): bool
-    {
-        return $request->isMethod('POST') && $this->getLoginUrl($request) === $request->getBaseUrl() . $request->getPathInfo();
-    }
-
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
     {
         if ($request->hasSession()) {
@@ -87,5 +71,15 @@ class Authenticator extends AbstractLoginFormAuthenticator
     public function start(Request $request, AuthenticationException $authException = null): Response
     {
         return new RedirectResponse($this->getLoginPageUrl());
+    }
+
+    protected function getLoginUrl(Request $request): string
+    {
+        return $this->urlGenerator->generate(self::LOGIN_API_ROUTE);
+    }
+
+    private function getLoginPageUrl(): string
+    {
+        return $this->urlGenerator->generate(self::LOGIN_PAGE_ROUTE);
     }
 }
